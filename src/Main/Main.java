@@ -1,20 +1,17 @@
 package Main;
 
-import bdd.mySQL;
+import Back.login;
 
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
 
-        mySQL bdd = new mySQL();
-        String[] test;
-        //bdd.insert1("Insert into client (name,surname) Values(\"Victoria\",\"Robert\")");
-        test = bdd.multipleSelect("SELECT name FROM client");
+        boolean validation;
 
-        for(String i : test) System.out.println(i);
+        login test = new login("Evga", "Kith", "ke@mail.fr", "root");
+        validation = test.signIn();
 
-        //System.out.println(test[2]);
+        System.out.println(validation);
 
     }
 }
