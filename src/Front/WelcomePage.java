@@ -18,26 +18,28 @@ public class WelcomePage extends JFrame {
     private JLabel DescriptionF2;
     private JLabel DescriptionF3;
 
+
     private String mail, password;
 
 
     public WelcomePage() {
-        setContentPane(panelLogin);
-        setTitle("Welcome");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800,300);
-        setVisible(true);
+        JFrame frame = new JFrame();
+        frame.setContentPane(panelLogin);
+        frame.setTitle("Welcome");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800, 300);
+        frame.setVisible(true);
 
 
         buttonBuy.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("tests");
                 mail = mailField.getText();
                 password = Hashing.doHashing(passwordField.getText());
-                Back.login test = new login(mail,password);
+                Back.login test = new login(mail, password);
                 System.out.println(test.signIn());
-                new BuyPage().setVisible(true);
+                new BuyPage();
+                frame.dispose();
 
             }
         });
