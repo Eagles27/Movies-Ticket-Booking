@@ -16,6 +16,11 @@ public class login {
         this.password = Hashing.doHashing(password);
     }
 
+    public login(String mail, String password){
+        this.mail = mail;
+        this.password = password;
+    }
+
     public void signUp() {
         bdd.mySQL bdd = new mySQL();
         bdd.insert1("INSERT INTO client (name,surname,email,password) VALUES('" + name + "'," + "'" + surname + "','" + mail + "','" + password + "'" + ")");
