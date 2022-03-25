@@ -28,13 +28,17 @@ public class WelcomePage extends JFrame {
         setSize(800,300);
         setVisible(true);
 
-        ButtonLogin.addActionListener(new ActionListener() {
+
+        buttonBuy.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("tests");
                 mail = mailField.getText();
                 password = Hashing.doHashing(passwordField.getText());
                 Back.login test = new login(mail,password);
                 System.out.println(test.signIn());
+                new BuyPage().setVisible(true);
+
             }
         });
     }

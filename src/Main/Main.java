@@ -1,6 +1,7 @@
 package Main;
 
 import Back.login;
+import Front.BuyPage;
 import Front.WelcomePage;
 
 public class Main {
