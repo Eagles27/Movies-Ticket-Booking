@@ -8,7 +8,8 @@ public class Main {
 
         boolean validation;
 
-        login test = new login("Evga", "Kith", "ke@mail.fr", "root");
+        login test = new login("Antoine", "Alouche", "ke@mail.fr", "test");
+        test.signUp();
         validation = test.signIn();
 
         System.out.println(validation);
