@@ -20,6 +20,7 @@ public class BuyPage extends JFrame {
     private JButton ButtonNext;
     private JButton button1;
     private JPanel panelBuy;
+    private JTextField textField3;
 
 
     public BuyPage(){
