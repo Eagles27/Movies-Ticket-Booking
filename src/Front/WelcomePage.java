@@ -43,5 +43,12 @@ public class WelcomePage extends JFrame {
 
             }
         });
+        ButtonNew.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new NewCustomerPage();
+                frame.dispose();
+            }
+        });
     }
 }

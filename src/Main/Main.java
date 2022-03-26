@@ -12,11 +12,11 @@ public class Main {
 
         new WelcomePage();
 
-        login test = new login("Antoine", "Alouche", "ke@mail.fr", "test");
-        test.signUp();
-        validation = test.signIn();
-
-        System.out.println(validation);
+//        login test = new login("Antoine", "Alouche", "ke@mail.fr", "test");
+//        test.signUp();
+//        validation = test.signIn();
+//
+//        System.out.println(validation);
 
     }
 }

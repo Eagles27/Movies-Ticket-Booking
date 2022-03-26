@@ -1,6 +1,8 @@
 package Front;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BuyPage extends JFrame {
     private JRadioButton radioButton1;
@@ -21,10 +23,18 @@ public class BuyPage extends JFrame {
 
 
     public BuyPage(){
-        setContentPane(panelBuy);
-        setTitle("BUY");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800,300);
-        setVisible(true);
+        JFrame window = new JFrame();
+        window.setContentPane(panelBuy);
+        window.setTitle("BUY");
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setSize(800,300);
+        window.setVisible(true);
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new WelcomePage();
+                window.dispose();
+            }
+        });
     }
 }
