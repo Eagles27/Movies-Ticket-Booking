@@ -1,6 +1,6 @@
 package Front;
 
-import Back.Hashing;
+import Back.ListMovies;
 import Back.login;
 
 import javax.swing.*;
@@ -14,33 +14,40 @@ public class WelcomePage extends JFrame {
     private JButton ButtonLogin;
     private JPanel panelLogin;
     private JButton buttonBuy;
-    private JLabel DescriptionF1;
-    private JLabel DescriptionF2;
-    private JLabel DescriptionF3;
-
-
-    private String mail, password;
+    private JLabel TitleF1;
+    private JLabel ReleaseF1;
+    private JLabel ReleaseF2;
+    private JLabel ReleaseF3;
+    private JLabel Title2;
+    private JLabel Title3;
+    private JLabel JLabelError;
 
 
     public WelcomePage() {
         JFrame frame = new JFrame();
         frame.setContentPane(panelLogin);
         frame.setTitle("Welcome");
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 300);
+
+        ListMovies list = new ListMovies();
+
+        TitleF1.setText(list.getListMoviesName().get(0));
+        ReleaseF1.setText(list.getListMoviesReleased().get(0));
+        Title2.setText(list.getListMoviesName().get(1));
+        ReleaseF2.setText(list.getListMoviesReleased().get(1));
+        Title3.setText(list.getListMoviesName().get(2));
+        ReleaseF3.setText(list.getListMoviesReleased().get(2));
+
+
         frame.setVisible(true);
 
 
         buttonBuy.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mail = mailField.getText();
-                password = Hashing.doHashing(passwordField.getText());
-                Back.login test = new login(mail, password);
-                System.out.println(test.signIn());
                 new BuyPage();
                 frame.dispose();
-
             }
         });
         ButtonNew.addActionListener(new ActionListener() {
@@ -48,6 +55,17 @@ public class WelcomePage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 new NewCustomerPage();
                 frame.dispose();
+            }
+        });
+        ButtonLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                login user = new login(mailField.getText(),passwordField.getText());
+                if (user.signIn()){
+                    new BuyPage(mailField.getText());
+                    frame.dispose();
+                }
+                else JLabelError.setText("Wrong Information");
             }
         });
     }

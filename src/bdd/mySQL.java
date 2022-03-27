@@ -40,7 +40,7 @@ public class mySQL {
         return "";
     }
 
-    public String[] multipleSelect(String query) {
+    public ArrayList<String> multipleSelect(String query) {
         // Variables
         ArrayList<String> output = new ArrayList<>();
 
@@ -72,7 +72,7 @@ public class mySQL {
                 System.out.println(ex.getMessage());
             }
         }
-        return output.toArray(new String[0]);
+        return output;
     }
 
     public void insert1(String query) {

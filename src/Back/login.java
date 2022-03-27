@@ -6,8 +6,8 @@ import java.util.Locale;
 
 public class login {
 
-    private final int admin = 0;
-    private final int member = 1;
+    private final String admin = String.valueOf(false);
+    private final String member = String.valueOf(true);
     private String mail;
     private String password;
     private String name;
@@ -24,7 +24,7 @@ public class login {
 
     public login(String mail, String password) {
         this.mail = mail;
-        this.password = password;
+        this.password = Hashing.doHashing(password);
     }
 
     public void signUp() {
