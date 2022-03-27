@@ -17,7 +17,7 @@ public class NewCustomerPage extends JFrame {
     private JRadioButton sendMeTheNewsletterRadioButton;
     private JRadioButton acceptTheCGURadioButton;
     private JButton VALIDATEButton;
-    private JButton button1;
+    private JButton buttonExit;
     private JPanel NewCustomerPage;
     private JLabel JLabelWrongPassword;
     private JLabel JLabelCGUConfirm;
@@ -27,7 +27,7 @@ public class NewCustomerPage extends JFrame {
         JFrame window = new JFrame();
         window.setContentPane(NewCustomerPage);
         window.setTitle("SignUP");
-        window.setSize(300,500);
+        window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -36,11 +36,13 @@ public class NewCustomerPage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                boolean NoNULL = (JTextFieldName.getText().isEmpty() && JTextFieldFirstName.getText().isEmpty() && JTextFieldBirth.getText().isEmpty() && JtextFieldMail.getText().isEmpty() && JTextFieldPassword.getText().isEmpty());
+                boolean NULL = (JTextFieldName.getText().isEmpty() && JTextFieldFirstName.getText().isEmpty() && JTextFieldBirth.getText().isEmpty() && JtextFieldMail.getText().isEmpty() && JTextFieldPassword.getText().isEmpty());
 
-                if(Arrays.equals(JTextFieldPassword.getPassword(), JTextFieldConfirm.getPassword()) && NoNULL && acceptTheCGURadioButton.isSelected()){
+                if(Arrays.equals(JTextFieldPassword.getPassword(), JTextFieldConfirm.getPassword()) && !NULL && acceptTheCGURadioButton.isSelected()){
                     Back.login client = new login(JTextFieldName.getText(),JTextFieldFirstName.getText(),JTextFieldBirth.getText(),JtextFieldMail.getText(),JTextFieldPassword.getText());
                     client.signUp();
+                    new BuyPage();
+                    window.dispose();
                 }
 
                 else if (!Arrays.equals(JTextFieldPassword.getPassword(), JTextFieldConfirm.getPassword())){
@@ -58,6 +60,13 @@ public class NewCustomerPage extends JFrame {
                     JLabelWrongPassword.setText("Please fill all the fields");
                 }
 
+            }
+        });
+        buttonExit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new WelcomePage();
+                window.dispose();
             }
         });
     }
