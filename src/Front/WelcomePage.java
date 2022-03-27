@@ -1,5 +1,7 @@
 package Front;
 
+import Back.ClientInfo;
+import Back.Hashing;
 import Back.ListMovies;
 import Back.login;
 
@@ -61,7 +63,14 @@ public class WelcomePage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 login user = new login(mailField.getText(),passwordField.getText());
-                if (user.signIn()){
+                ClientInfo root = new ClientInfo(mailField.getText());
+
+                boolean ISadmin = root.isAdmin() && ((Hashing.doHashing(passwordField.getText())).equals(root.getPassword()));
+
+                if(ISadmin){
+                    System.out.println("Admin");
+                }
+                else if (user.signIn()){
                     new BuyPage(mailField.getText());
                     frame.dispose();
                 }

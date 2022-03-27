@@ -9,6 +9,7 @@ public class ClientInfo {
     private String surname;
     private String birthdate;
     private String admin;
+    private String password;
     private String member;
 
     public ClientInfo(String mailInput) {
@@ -19,6 +20,7 @@ public class ClientInfo {
         birthdate = bdd.select("SELECT birthdate FROM client WHERE idclient ='" + clientID + "'");
         admin = bdd.select("SELECT admin FROM client WHERE idclient ='" + clientID + "'");
         member = bdd.select("SELECT member FROM client WHERE idclient ='" + clientID + "'");
+        password = bdd.select("SELECT password FROM client WHERE idclient ='" + clientID + "'");
 
     }
 
@@ -44,6 +46,10 @@ public class ClientInfo {
 
     public String getMember() {
         return member;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public boolean isAdmin() {
