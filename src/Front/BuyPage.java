@@ -4,8 +4,6 @@ import Back.ClientInfo;
 import Back.ListMovies;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class BuyPage extends JFrame {
     private JRadioButton radioButton1;
@@ -13,15 +11,20 @@ public class BuyPage extends JFrame {
     private JRadioButton radioButton3;
     private JRadioButton radioButton4;
     private JRadioButton radioButton5;
-    private JTextField testTextField;
-    private JTextField textField2;
+    private JTextField TextFieldTicket;
+    private JTextField TextFieldAge;
     private JButton ButtonNext;
     private JButton button1;
     private JPanel panelBuy;
-    private JTextField textField3;
+    private JTextField TextFieldDate;
     private JButton buttonErase;
     private JLabel JLabelName;
     private JLabel JLabelMember;
+    private JLabel JLabelError;
+
+    private int numberOfTicket;
+    private String date;
+    private int age;
 
 
     public BuyPage() {
@@ -32,87 +35,74 @@ public class BuyPage extends JFrame {
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         Update();
         window.setVisible(true);
-        button1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new WelcomePage();
+        button1.addActionListener(e -> {
+            new WelcomePage();
+            window.dispose();
+        });
+
+        radioButton1.addActionListener(e -> {
+            radioButton2.setEnabled(false);
+            radioButton3.setEnabled(false);
+            radioButton4.setEnabled(false);
+            radioButton5.setEnabled(false);
+        });
+        radioButton2.addActionListener(e -> {
+            radioButton1.setEnabled(false);
+            radioButton3.setEnabled(false);
+            radioButton4.setEnabled(false);
+            radioButton5.setEnabled(false);
+
+        });
+        radioButton3.addActionListener(e -> {
+            radioButton2.setEnabled(false);
+            radioButton1.setEnabled(false);
+            radioButton4.setEnabled(false);
+            radioButton5.setEnabled(false);
+        });
+        radioButton4.addActionListener(e -> {
+            radioButton2.setEnabled(false);
+            radioButton3.setEnabled(false);
+            radioButton1.setEnabled(false);
+            radioButton5.setEnabled(false);
+        });
+        radioButton5.addActionListener(e -> {
+            radioButton2.setEnabled(false);
+            radioButton3.setEnabled(false);
+            radioButton4.setEnabled(false);
+            radioButton1.setEnabled(false);
+        });
+
+        buttonErase.addActionListener(e -> {
+            radioButton1.setSelected(false);
+            radioButton2.setSelected(false);
+            radioButton3.setSelected(false);
+            radioButton4.setSelected(false);
+            radioButton5.setSelected(false);
+
+            radioButton1.setEnabled(true);
+            radioButton2.setEnabled(true);
+            radioButton3.setEnabled(true);
+            radioButton4.setEnabled(true);
+            radioButton5.setEnabled(true);
+
+            JLabelError.setText("");
+            TextFieldDate.setText("");
+            TextFieldAge.setText("");
+            TextFieldTicket.setText("");
+        });
+
+
+        ButtonNext.addActionListener(e -> {
+            boolean NULL = (TextFieldTicket.getText().isEmpty() || TextFieldDate.getText().isEmpty() || TextFieldAge.getText().isEmpty());
+
+            if (ChoiceMovie() != -1 && !NULL) {
+                numberOfTicket = Integer.parseInt(TextFieldTicket.getText());
+                date = TextFieldDate.getText();
+                age = Integer.parseInt(TextFieldAge.getText());
                 window.dispose();
+                new SelectDate(ChoiceMovie(),numberOfTicket,date,age);
             }
-        });
-
-        radioButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                radioButton2.setEnabled(false);
-                radioButton3.setEnabled(false);
-                radioButton4.setEnabled(false);
-                radioButton5.setEnabled(false);
-            }
-        });
-        radioButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                radioButton1.setEnabled(false);
-                radioButton3.setEnabled(false);
-                radioButton4.setEnabled(false);
-                radioButton5.setEnabled(false);
-
-            }
-        });
-        radioButton3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                radioButton2.setEnabled(false);
-                radioButton1.setEnabled(false);
-                radioButton4.setEnabled(false);
-                radioButton5.setEnabled(false);
-            }
-        });
-        radioButton4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                radioButton2.setEnabled(false);
-                radioButton3.setEnabled(false);
-                radioButton1.setEnabled(false);
-                radioButton5.setEnabled(false);
-            }
-        });
-        radioButton5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                radioButton2.setEnabled(false);
-                radioButton3.setEnabled(false);
-                radioButton4.setEnabled(false);
-                radioButton1.setEnabled(false);
-            }
-        });
-
-        buttonErase.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                radioButton1.setSelected(false);
-                radioButton2.setSelected(false);
-                radioButton3.setSelected(false);
-                radioButton4.setSelected(false);
-                radioButton5.setSelected(false);
-
-                radioButton1.setEnabled(true);
-                radioButton2.setEnabled(true);
-                radioButton3.setEnabled(true);
-                radioButton4.setEnabled(true);
-                radioButton5.setEnabled(true);
-            }
-        });
-
-
-        ButtonNext.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (ChoiceMovie() != -1) {
-                    window.dispose();
-                    new SelectDate();
-                }
-            }
+            else JLabelError.setText("Please fill all information");
         });
     }
 
@@ -131,87 +121,156 @@ public class BuyPage extends JFrame {
         window.setVisible(true);
 
 
-        button1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new WelcomePage();
+        button1.addActionListener(e -> {
+            new WelcomePage();
+            window.dispose();
+        });
+
+        radioButton1.addActionListener(e -> {
+            radioButton2.setEnabled(false);
+            radioButton3.setEnabled(false);
+            radioButton4.setEnabled(false);
+            radioButton5.setEnabled(false);
+        });
+        radioButton2.addActionListener(e -> {
+            radioButton1.setEnabled(false);
+            radioButton3.setEnabled(false);
+            radioButton4.setEnabled(false);
+            radioButton5.setEnabled(false);
+
+        });
+        radioButton3.addActionListener(e -> {
+            radioButton2.setEnabled(false);
+            radioButton1.setEnabled(false);
+            radioButton4.setEnabled(false);
+            radioButton5.setEnabled(false);
+        });
+        radioButton4.addActionListener(e -> {
+            radioButton2.setEnabled(false);
+            radioButton3.setEnabled(false);
+            radioButton1.setEnabled(false);
+            radioButton5.setEnabled(false);
+        });
+        radioButton5.addActionListener(e -> {
+            radioButton2.setEnabled(false);
+            radioButton3.setEnabled(false);
+            radioButton4.setEnabled(false);
+            radioButton1.setEnabled(false);
+        });
+
+        buttonErase.addActionListener(e -> {
+            radioButton1.setSelected(false);
+            radioButton2.setSelected(false);
+            radioButton3.setSelected(false);
+            radioButton4.setSelected(false);
+            radioButton5.setSelected(false);
+
+            radioButton1.setEnabled(true);
+            radioButton2.setEnabled(true);
+            radioButton3.setEnabled(true);
+            radioButton4.setEnabled(true);
+            radioButton5.setEnabled(true);
+
+            JLabelError.setText("");
+            TextFieldDate.setText("");
+            TextFieldAge.setText("");
+            TextFieldTicket.setText("");
+        });
+
+
+        ButtonNext.addActionListener(e -> {
+            boolean NULL = (TextFieldAge.getText().isEmpty() || TextFieldDate.getText().isEmpty() || TextFieldTicket.getText().isEmpty());
+            if (ChoiceMovie() != -1 && !NULL) {
+                numberOfTicket = Integer.parseInt(TextFieldTicket.getText());
+                date = TextFieldDate.getText();
+                age = Integer.parseInt(TextFieldAge.getText());
                 window.dispose();
+                new SelectDate(ChoiceMovie(),numberOfTicket,date,age);
             }
+            else JLabelError.setText("Please fill all information");
+        });
+    }
+
+    public BuyPage(int Imovie,int InumberOfTicket, String Idate, int Iage) {
+        JFrame window = new JFrame();
+        window.setContentPane(panelBuy);
+        window.setTitle("BUY");
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        Update();
+        CheckBox(Imovie);
+        TextFieldTicket.setText(String.valueOf(InumberOfTicket));
+        TextFieldDate.setText(Idate);
+        TextFieldAge.setText(String.valueOf(Iage));
+        window.setVisible(true);
+
+        button1.addActionListener(e -> {
+            new WelcomePage();
+            window.dispose();
         });
 
-        radioButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                radioButton2.setEnabled(false);
-                radioButton3.setEnabled(false);
-                radioButton4.setEnabled(false);
-                radioButton5.setEnabled(false);
-            }
+        radioButton1.addActionListener(e -> {
+            radioButton2.setEnabled(false);
+            radioButton3.setEnabled(false);
+            radioButton4.setEnabled(false);
+            radioButton5.setEnabled(false);
         });
-        radioButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                radioButton1.setEnabled(false);
-                radioButton3.setEnabled(false);
-                radioButton4.setEnabled(false);
-                radioButton5.setEnabled(false);
+        radioButton2.addActionListener(e -> {
+            radioButton1.setEnabled(false);
+            radioButton3.setEnabled(false);
+            radioButton4.setEnabled(false);
+            radioButton5.setEnabled(false);
 
-            }
         });
-        radioButton3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                radioButton2.setEnabled(false);
-                radioButton1.setEnabled(false);
-                radioButton4.setEnabled(false);
-                radioButton5.setEnabled(false);
-            }
+        radioButton3.addActionListener(e -> {
+            radioButton2.setEnabled(false);
+            radioButton1.setEnabled(false);
+            radioButton4.setEnabled(false);
+            radioButton5.setEnabled(false);
         });
-        radioButton4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                radioButton2.setEnabled(false);
-                radioButton3.setEnabled(false);
-                radioButton1.setEnabled(false);
-                radioButton5.setEnabled(false);
-            }
+        radioButton4.addActionListener(e -> {
+            radioButton2.setEnabled(false);
+            radioButton3.setEnabled(false);
+            radioButton1.setEnabled(false);
+            radioButton5.setEnabled(false);
         });
-        radioButton5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                radioButton2.setEnabled(false);
-                radioButton3.setEnabled(false);
-                radioButton4.setEnabled(false);
-                radioButton1.setEnabled(false);
-            }
+        radioButton5.addActionListener(e -> {
+            radioButton2.setEnabled(false);
+            radioButton3.setEnabled(false);
+            radioButton4.setEnabled(false);
+            radioButton1.setEnabled(false);
         });
 
-        buttonErase.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                radioButton1.setSelected(false);
-                radioButton2.setSelected(false);
-                radioButton3.setSelected(false);
-                radioButton4.setSelected(false);
-                radioButton5.setSelected(false);
+        buttonErase.addActionListener(e -> {
+            radioButton1.setSelected(false);
+            radioButton2.setSelected(false);
+            radioButton3.setSelected(false);
+            radioButton4.setSelected(false);
+            radioButton5.setSelected(false);
 
-                radioButton1.setEnabled(true);
-                radioButton2.setEnabled(true);
-                radioButton3.setEnabled(true);
-                radioButton4.setEnabled(true);
-                radioButton5.setEnabled(true);
-            }
+            radioButton1.setEnabled(true);
+            radioButton2.setEnabled(true);
+            radioButton3.setEnabled(true);
+            radioButton4.setEnabled(true);
+            radioButton5.setEnabled(true);
+
+            JLabelError.setText("");
+            TextFieldDate.setText("");
+            TextFieldAge.setText("");
+            TextFieldTicket.setText("");
         });
 
 
-        ButtonNext.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (ChoiceMovie() != -1) {
-                    window.dispose();
-                    new SelectDate();
-                }
+        ButtonNext.addActionListener(e -> {
+            boolean NULL = (TextFieldAge.getText().isEmpty() || TextFieldDate.getText().isEmpty() || TextFieldTicket.getText().isEmpty());
+            if (ChoiceMovie() != -1 && !NULL) {
+                numberOfTicket = Integer.parseInt(TextFieldTicket.getText());
+                date = TextFieldDate.getText();
+                age = Integer.parseInt(TextFieldAge.getText());
+                window.dispose();
+                new SelectDate(ChoiceMovie(),numberOfTicket,date,age);
             }
+            else JLabelError.setText("Please fill all information");
         });
     }
 
@@ -233,5 +292,44 @@ public class BuyPage extends JFrame {
         else if (radioButton5.isSelected()) return 4;
 
         else return -1;
+    }
+
+    private void CheckBox(int movie) {
+        if (movie == 0) {
+            radioButton1.setSelected(true);
+            radioButton2.setEnabled(false);
+            radioButton3.setEnabled(false);
+            radioButton4.setEnabled(false);
+            radioButton5.setEnabled(false);
+        }
+        else if (movie == 1) {
+            radioButton2.setSelected(true);
+            radioButton1.setEnabled(false);
+            radioButton3.setEnabled(false);
+            radioButton4.setEnabled(false);
+            radioButton5.setEnabled(false);
+        }
+        else if (movie == 2) {
+            radioButton3.setSelected(true);
+            radioButton2.setEnabled(false);
+            radioButton1.setEnabled(false);
+            radioButton4.setEnabled(false);
+            radioButton5.setEnabled(false);
+        }
+        else if (movie == 3) {
+            radioButton4.setSelected(true);
+            radioButton2.setEnabled(false);
+            radioButton1.setEnabled(false);
+            radioButton3.setEnabled(false);
+            radioButton5.setEnabled(false);
+        }
+        else if (movie == 4) {
+            radioButton5.setSelected(true);
+            radioButton2.setEnabled(false);
+            radioButton3.setEnabled(false);
+            radioButton1.setEnabled(false);
+            radioButton4.setEnabled(false);
+        }
+
     }
 }

@@ -14,7 +14,9 @@ public class SelectDate extends JFrame{
     private JRadioButton heureSéance5RadioButton;
     private JButton button1;
 
-    public SelectDate(){
+
+
+    public SelectDate(int movie,int numberOfTicket, String date, int age){
         JFrame window = new JFrame();
         window.setContentPane(SelectDataPane);
         window.setTitle("SelectDate");
@@ -26,7 +28,7 @@ public class SelectDate extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 window.dispose();
-                new BuyPage();
+                new BuyPage(movie,numberOfTicket,date,age);
 
             }
         });
