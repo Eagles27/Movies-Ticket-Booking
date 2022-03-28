@@ -10,7 +10,6 @@ import java.util.Arrays;
 public class NewCustomerPage extends JFrame {
     private JTextField JTextFieldName;
     private JTextField JTextFieldFirstName;
-    private JTextField JTextFieldBirth;
     private JTextField JtextFieldMail;
     private JPasswordField JTextFieldPassword;
     private JPasswordField JTextFieldConfirm;
@@ -21,9 +20,12 @@ public class NewCustomerPage extends JFrame {
     private JPanel NewCustomerPage;
     private JLabel JLabelWrongPassword;
     private JLabel JLabelCGUConfirm;
+    private JComboBox comboBoxYears;
+    private JComboBox comboBoxMonths;
+    private JComboBox comboBoxDay;
 
 
-    public NewCustomerPage(){
+    public NewCustomerPage() {
         JFrame window = new JFrame();
         window.setContentPane(NewCustomerPage);
         window.setTitle("SignUP");
@@ -31,31 +33,26 @@ public class NewCustomerPage extends JFrame {
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
         VALIDATEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                boolean NULL = (JTextFieldName.getText().isEmpty() && JTextFieldFirstName.getText().isEmpty() && JTextFieldBirth.getText().isEmpty() && JtextFieldMail.getText().isEmpty() && JTextFieldPassword.getText().isEmpty());
-
-                if(Arrays.equals(JTextFieldPassword.getPassword(), JTextFieldConfirm.getPassword()) && !NULL && acceptTheCGURadioButton.isSelected()){
-                    Back.login client = new login(JTextFieldName.getText(),JTextFieldFirstName.getText(),JTextFieldBirth.getText(),JtextFieldMail.getText(),JTextFieldPassword.getText());
+                String date = comboBoxYears.getSelectedItem().toString() + "-" + comboBoxMonths.getSelectedItem().toString()+ "-" + comboBoxDay.getSelectedItem().toString();
+                boolean NULL = (JTextFieldName.getText().isEmpty() || JTextFieldFirstName.getText().isEmpty() || JtextFieldMail.getText().isEmpty() || JTextFieldPassword.getText().isEmpty());
+                if (Arrays.equals(JTextFieldPassword.getPassword(), JTextFieldConfirm.getPassword()) && !NULL && acceptTheCGURadioButton.isSelected()) {
+                    Back.login client = new login(JTextFieldName.getText(), JTextFieldFirstName.getText(), date, JtextFieldMail.getText(), JTextFieldPassword.getText());
                     client.signUp();
                     new BuyPage();
                     window.dispose();
-                }
 
-                else if (!Arrays.equals(JTextFieldPassword.getPassword(), JTextFieldConfirm.getPassword())){
+
+                } else if (!Arrays.equals(JTextFieldPassword.getPassword(), JTextFieldConfirm.getPassword())) {
                     JLabelCGUConfirm.setText("");
                     JLabelWrongPassword.setText("Wrong password, try again.");
-                }
 
-                else if(!acceptTheCGURadioButton.isSelected()){
+                } else if (!acceptTheCGURadioButton.isSelected()) {
                     JLabelWrongPassword.setText("");
                     JLabelCGUConfirm.setText("Please accept the CGU");
-                }
-
-                else{
+                } else {
                     JLabelCGUConfirm.setText("");
                     JLabelWrongPassword.setText("Please fill all the fields");
                 }
