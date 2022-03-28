@@ -36,12 +36,12 @@ public class NewCustomerPage extends JFrame {
         VALIDATEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String date = comboBoxYears.getSelectedItem().toString() + "-" + comboBoxMonths.getSelectedItem().toString()+ "-" + comboBoxDay.getSelectedItem().toString();
+                String date = comboBoxYears.getSelectedItem().toString() + "-" + comboBoxMonths.getSelectedItem().toString() + "-" + comboBoxDay.getSelectedItem().toString();
                 boolean NULL = (JTextFieldName.getText().isEmpty() || JTextFieldFirstName.getText().isEmpty() || JtextFieldMail.getText().isEmpty() || JTextFieldPassword.getText().isEmpty());
                 if (Arrays.equals(JTextFieldPassword.getPassword(), JTextFieldConfirm.getPassword()) && !NULL && acceptTheCGURadioButton.isSelected()) {
                     Back.login client = new login(JTextFieldName.getText(), JTextFieldFirstName.getText(), date, JtextFieldMail.getText(), JTextFieldPassword.getText());
                     client.signUp();
-                    new BuyPage();
+                    new BuyPage(JtextFieldMail.getText());
                     window.dispose();
 
 
