@@ -34,4 +34,8 @@ public class ListMovies {
     public ArrayList<String> getListMoviesReleased() {
         return listMoviesReleased;
     }
+
+    public String getMovieName(int index){
+        return listMoviesName.get(index);
+    }
 }
