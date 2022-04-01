@@ -24,6 +24,7 @@ public class SelectDate extends JFrame {
     private JLabel JLabelMember;
     private JLabel JLabelDate;
     private JLabel JLabelPrice;
+    private JButton eraseButton;
 
     private ArrayList<String> listSession = new ArrayList<>();
     private int numberOfChildrenTicket;
@@ -55,6 +56,8 @@ public class SelectDate extends JFrame {
         JRsession4.setText(listSession.get(3));
         JRsession5.setText(listSession.get(4));
 
+        NoSession();
+
         JLabelPrice.setText("£"+String.valueOf(priceCalcul()));
 
 
@@ -65,6 +68,58 @@ public class SelectDate extends JFrame {
                 window.dispose();
                 new BuyPage(movie, numberOfTicket, date, numberOfChildrenTicket, index);
 
+            }
+        });
+
+        JRsession1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JRsession2.setEnabled(false);
+                JRsession3.setEnabled(false);
+                JRsession4.setEnabled(false);
+                JRsession5.setEnabled(false);
+            }
+        });
+        JRsession2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JRsession1.setEnabled(false);
+                JRsession3.setEnabled(false);
+                JRsession4.setEnabled(false);
+                JRsession5.setEnabled(false);
+            }
+        });
+        JRsession3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JRsession2.setEnabled(false);
+                JRsession1.setEnabled(false);
+                JRsession4.setEnabled(false);
+                JRsession5.setEnabled(false);
+            }
+        });
+        JRsession4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JRsession2.setEnabled(false);
+                JRsession3.setEnabled(false);
+                JRsession1.setEnabled(false);
+                JRsession5.setEnabled(false);
+            }
+        });
+        JRsession5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JRsession2.setEnabled(false);
+                JRsession3.setEnabled(false);
+                JRsession4.setEnabled(false);
+                JRsession1.setEnabled(false);
+            }
+        });
+        eraseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Reset();
             }
         });
     }
@@ -98,6 +153,8 @@ public class SelectDate extends JFrame {
         JRsession4.setText(listSession.get(3));
         JRsession5.setText(listSession.get(4));
 
+        NoSession();
+
         //Price
         JLabelPrice.setText("£"+String.valueOf(priceCalcul(-1)));
 
@@ -111,8 +168,85 @@ public class SelectDate extends JFrame {
 
             }
         });
+
+        JRsession1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JRsession2.setEnabled(false);
+                JRsession3.setEnabled(false);
+                JRsession4.setEnabled(false);
+                JRsession5.setEnabled(false);
+            }
+        });
+        JRsession2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JRsession1.setEnabled(false);
+                JRsession3.setEnabled(false);
+                JRsession4.setEnabled(false);
+                JRsession5.setEnabled(false);
+            }
+        });
+        JRsession3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JRsession2.setEnabled(false);
+                JRsession1.setEnabled(false);
+                JRsession4.setEnabled(false);
+                JRsession5.setEnabled(false);
+            }
+        });
+        JRsession4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JRsession2.setEnabled(false);
+                JRsession3.setEnabled(false);
+                JRsession1.setEnabled(false);
+                JRsession5.setEnabled(false);
+            }
+        });
+        JRsession5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JRsession2.setEnabled(false);
+                JRsession3.setEnabled(false);
+                JRsession4.setEnabled(false);
+                JRsession1.setEnabled(false);
+            }
+        });
+
+        eraseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Reset();
+            }
+        });
     }
 
+
+    //Function button
+    private void NoSession(){
+        if(JRsession1.getText().equals("No more dates available")) JRsession1.setEnabled(false);
+        if(JRsession2.getText().equals("No more dates available")) JRsession2.setEnabled(false);
+        if(JRsession3.getText().equals("No more dates available")) JRsession3.setEnabled(false);
+        if(JRsession4.getText().equals("No more dates available")) JRsession4.setEnabled(false);
+        if(JRsession5.getText().equals("No more dates available")) JRsession5.setEnabled(false);
+    }
+    private void Reset(){
+        JRsession1.setSelected(false);
+        JRsession2.setSelected(false);
+        JRsession3.setSelected(false);
+        JRsession4.setSelected(false);
+        JRsession5.setSelected(false);
+
+        JRsession1.setEnabled(true);
+        JRsession2.setEnabled(true);
+        JRsession3.setEnabled(true);
+        JRsession4.setEnabled(true);
+        JRsession5.setEnabled(true);
+
+        NoSession();
+    }
 
     //Functions prices
     private double priceCalcul(){
