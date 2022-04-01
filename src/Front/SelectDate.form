@@ -64,7 +64,7 @@
               <text value="€"/>
             </properties>
           </component>
-          <component id="d5030" class="javax.swing.JRadioButton" binding="heureSéance1RadioButton" default-binding="true">
+          <component id="d5030" class="javax.swing.JRadioButton" binding="JRsession1">
             <constraints>
               <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -72,7 +72,7 @@
               <text value="Heure séance 1"/>
             </properties>
           </component>
-          <component id="cda63" class="javax.swing.JRadioButton" binding="heureSéance2RadioButton" default-binding="true">
+          <component id="cda63" class="javax.swing.JRadioButton" binding="JRsession2">
             <constraints>
               <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -80,7 +80,7 @@
               <text value="Heure séance 2"/>
             </properties>
           </component>
-          <component id="4c63d" class="javax.swing.JRadioButton" binding="heureSéance3RadioButton" default-binding="true">
+          <component id="4c63d" class="javax.swing.JRadioButton" binding="JRsession3">
             <constraints>
               <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -88,7 +88,7 @@
               <text value="Heure séance 3"/>
             </properties>
           </component>
-          <component id="31e46" class="javax.swing.JRadioButton" binding="heureSéance4RadioButton" default-binding="true">
+          <component id="31e46" class="javax.swing.JRadioButton" binding="JRsession4">
             <constraints>
               <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -96,7 +96,7 @@
               <text value="Heure séance 4"/>
             </properties>
           </component>
-          <component id="582a9" class="javax.swing.JRadioButton" binding="heureSéance5RadioButton" default-binding="true">
+          <component id="582a9" class="javax.swing.JRadioButton" binding="JRsession5">
             <constraints>
               <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
