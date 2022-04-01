@@ -23,12 +23,17 @@ public class SelectDate extends JFrame {
     private JLabel JLabelName;
     private JLabel JLabelMember;
     private JLabel JLabelDate;
+    private JLabel JLabelPrice;
 
     private ArrayList<String> listSession = new ArrayList<>();
+    private int numberOfChildrenTicket;
+    private int numberOfTicket;
 
 
-    public SelectDate(int movie, int numberOfTicket, String date, int age, int[] index) {
+    public SelectDate(int movie, int numberOfTicket, String date, int numberOfChildrenTicket, int[] index) {
         JFrame window = new JFrame();
+        this.numberOfChildrenTicket = numberOfChildrenTicket;
+        this.numberOfTicket = numberOfTicket;
         window.setContentPane(SelectDataPane);
         window.setTitle("SelectDate");
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -50,19 +55,24 @@ public class SelectDate extends JFrame {
         JRsession4.setText(listSession.get(3));
         JRsession5.setText(listSession.get(4));
 
+        JLabelPrice.setText("£"+String.valueOf(priceCalcul()));
+
+
 
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 window.dispose();
-                new BuyPage(movie, numberOfTicket, date, age, index);
+                new BuyPage(movie, numberOfTicket, date, numberOfChildrenTicket, index);
 
             }
         });
     }
 
-    public SelectDate(int movie, int numberOfTicket, String date, int age, int[] index, int id) {
+    public SelectDate(int movie, int numberOfTicket, String date, int numberOfChildrenTicket, int[] index, int id) {
         JFrame window = new JFrame();
+        this.numberOfTicket = numberOfTicket;
+        this.numberOfChildrenTicket = numberOfChildrenTicket;
         window.setContentPane(SelectDataPane);
         window.setTitle("SelectDate");
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -88,17 +98,30 @@ public class SelectDate extends JFrame {
         JRsession4.setText(listSession.get(3));
         JRsession5.setText(listSession.get(4));
 
+        //Price
+        JLabelPrice.setText("£"+String.valueOf(priceCalcul(-1)));
+
 
 
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 window.dispose();
-                new BuyPage(user.getMail(), movie, numberOfTicket, date, age, index);
+                new BuyPage(user.getMail(), movie, numberOfTicket, date, numberOfChildrenTicket, index);
 
             }
         });
     }
+
+
+    //Functions prices
+    private double priceCalcul(){
+        return 7.50 * numberOfChildrenTicket + 11.50 * numberOfTicket;
+    }
+    private double priceCalcul(int id){
+        return 5.00 * numberOfChildrenTicket + 9.50 * numberOfTicket;
+    }
+
 
 
 }
