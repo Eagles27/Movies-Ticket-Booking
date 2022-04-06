@@ -69,7 +69,7 @@ public class SelectDate extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 window.dispose();
-                new BuyPage(movie, numberOfTicket, date, numberOfChildrenTicket, index);
+                new BuyPage(movie, numberOfTicket, numberOfChildrenTicket, date, numberOfChildrenTicket, index);
 
             }
         });
@@ -168,7 +168,7 @@ public class SelectDate extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 window.dispose();
-                new BuyPage(user.getMail(), movie, numberOfTicket, date, numberOfChildrenTicket, index);
+                new BuyPage(user.getMail(), movie, numberOfTicket, numberOfChildrenTicket, date,index);
 
             }
         });

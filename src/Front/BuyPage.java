@@ -12,8 +12,6 @@ public class BuyPage extends JFrame {
     private JRadioButton radioButton3;
     private JRadioButton radioButton4;
     private JRadioButton radioButton5;
-    private JTextField TextFieldTicket;
-    private JTextField TextFieldChildren;
     private JButton ButtonNext;
     private JButton button1;
     private JPanel panelBuy;
@@ -24,6 +22,8 @@ public class BuyPage extends JFrame {
     private JComboBox comboBoxYears;
     private JComboBox comboBoxMonths;
     private JComboBox comboBoxDay;
+    private JComboBox comboBoxATicket;
+    private JComboBox comboBoxCTicket;
     private int numberOfTicket;
     private String date;
     private int numberOfChildrenTicket;
@@ -75,33 +75,22 @@ public class BuyPage extends JFrame {
         });
 
         buttonErase.addActionListener(e -> {
-            radioButton1.setSelected(false);
-            radioButton2.setSelected(false);
-            radioButton3.setSelected(false);
-            radioButton4.setSelected(false);
-            radioButton5.setSelected(false);
-
-            radioButton1.setEnabled(true);
-            radioButton2.setEnabled(true);
-            radioButton3.setEnabled(true);
-            radioButton4.setEnabled(true);
-            radioButton5.setEnabled(true);
-
-            JLabelError.setText("");
-            TextFieldChildren.setText("");
-            TextFieldTicket.setText("");
+         Erase();
         });
 
 
         ButtonNext.addActionListener(e -> {
-            boolean NULL = (TextFieldTicket.getText().isEmpty() || TextFieldChildren.getText().isEmpty());
+            int ticket = comboBoxATicket.getSelectedIndex();
+            int ticketC = comboBoxCTicket.getSelectedIndex();
+
+            boolean NULL = ticket == 0;
             if (ChoiceMovie() != -1 && !NULL) {
                 index[0] = comboBoxYears.getSelectedIndex();
                 index[1] = comboBoxMonths.getSelectedIndex();
                 index[2] = comboBoxDay.getSelectedIndex();
-                numberOfTicket = Integer.parseInt(TextFieldTicket.getText());
+                numberOfTicket = ticket;
                 date = comboBoxYears.getSelectedItem().toString() + "-" + comboBoxMonths.getSelectedItem().toString() + "-" + comboBoxDay.getSelectedItem().toString();
-                numberOfChildrenTicket = Integer.parseInt(TextFieldChildren.getText());
+                numberOfChildrenTicket = ticketC;
                 window.dispose();
                 new SelectDate(ChoiceMovie(), numberOfTicket, date, numberOfChildrenTicket, index);
             } else JLabelError.setText("Please fill all information");
@@ -161,40 +150,29 @@ public class BuyPage extends JFrame {
         });
 
         buttonErase.addActionListener(e -> {
-            radioButton1.setSelected(false);
-            radioButton2.setSelected(false);
-            radioButton3.setSelected(false);
-            radioButton4.setSelected(false);
-            radioButton5.setSelected(false);
-
-            radioButton1.setEnabled(true);
-            radioButton2.setEnabled(true);
-            radioButton3.setEnabled(true);
-            radioButton4.setEnabled(true);
-            radioButton5.setEnabled(true);
-
-            JLabelError.setText("");
-            TextFieldChildren.setText("");
-            TextFieldTicket.setText("");
+         Erase();
         });
 
 
         ButtonNext.addActionListener(e -> {
-            boolean NULL = (TextFieldTicket.getText().isEmpty() || TextFieldChildren.getText().isEmpty());
+            int ticket = comboBoxATicket.getSelectedIndex();
+            int ticketC = comboBoxCTicket.getSelectedIndex();
+            boolean NULL = ticket == 0;
+
             if (ChoiceMovie() != -1 && !NULL) {
                 index[0] = comboBoxYears.getSelectedIndex();
                 index[1] = comboBoxMonths.getSelectedIndex();
                 index[2] = comboBoxDay.getSelectedIndex();
-                numberOfTicket = Integer.parseInt(TextFieldTicket.getText());
+                numberOfTicket = ticket;
                 date = comboBoxYears.getSelectedItem().toString() + "-" + comboBoxMonths.getSelectedItem().toString() + "-" + comboBoxDay.getSelectedItem().toString();
-                numberOfChildrenTicket = Integer.parseInt(TextFieldChildren.getText());
+                numberOfChildrenTicket = ticketC;
                 window.dispose();
                 new SelectDate(ChoiceMovie(), numberOfTicket, date, numberOfChildrenTicket, index,clientInfo.getClientID());
             } else JLabelError.setText("Please fill all information");
         });
     }
 
-    public BuyPage(String inputEmail,int Imovie, int InumberOfTicket, String Idate, int Iage, int[] Iindex) {
+    public BuyPage(String inputEmail,int Imovie, int InumberOfTicket,int InumberOfCTicket, String Idate,int[] Iindex) {
         JFrame window = new JFrame();
         window.setContentPane(panelBuy);
         window.setTitle("BUY");
@@ -204,10 +182,11 @@ public class BuyPage extends JFrame {
         JLabelMember.setText(clientInfo.getMember());
         JLabelName.setText(clientInfo.getSurname() + " " + clientInfo.getName());
         System.arraycopy(Iindex, 0, index, 0, Iindex.length);
+        numberOfTicket = InumberOfTicket;
+        numberOfChildrenTicket = InumberOfCTicket;
         Update();
         CheckBox(Imovie);
-        TextFieldTicket.setText(String.valueOf(InumberOfTicket));
-        TextFieldChildren.setText(String.valueOf(Iage));
+
         window.setVisible(true);
 
 
@@ -249,50 +228,39 @@ public class BuyPage extends JFrame {
         });
 
         buttonErase.addActionListener(e -> {
-            radioButton1.setSelected(false);
-            radioButton2.setSelected(false);
-            radioButton3.setSelected(false);
-            radioButton4.setSelected(false);
-            radioButton5.setSelected(false);
-
-            radioButton1.setEnabled(true);
-            radioButton2.setEnabled(true);
-            radioButton3.setEnabled(true);
-            radioButton4.setEnabled(true);
-            radioButton5.setEnabled(true);
-
-            JLabelError.setText("");
-            TextFieldChildren.setText("");
-            TextFieldTicket.setText("");
+            Erase();
         });
 
 
         ButtonNext.addActionListener(e -> {
-            boolean NULL = (TextFieldTicket.getText().isEmpty() || TextFieldChildren.getText().isEmpty());
+            int ticket = comboBoxATicket.getSelectedIndex();
+            int ticketC = comboBoxCTicket.getSelectedIndex();
+
+            boolean NULL = ticket == 0;
             if (ChoiceMovie() != -1 && !NULL) {
                 index[0] = comboBoxYears.getSelectedIndex();
                 index[1] = comboBoxMonths.getSelectedIndex();
                 index[2] = comboBoxDay.getSelectedIndex();
-                numberOfTicket = Integer.parseInt(TextFieldTicket.getText());
+                numberOfTicket = ticket;
                 date = comboBoxYears.getSelectedItem().toString() + "-" + comboBoxMonths.getSelectedItem().toString() + "-" + comboBoxDay.getSelectedItem().toString();
-                numberOfChildrenTicket = Integer.parseInt(TextFieldChildren.getText());
+                numberOfChildrenTicket = ticketC;
                 window.dispose();
                 new SelectDate(ChoiceMovie(), numberOfTicket, date, numberOfChildrenTicket, index,clientInfo.getClientID());
             } else JLabelError.setText("Please fill all information");
         });
     }
 
-    public BuyPage(int Imovie, int InumberOfTicket, String Idate, int Iage, int[] Iindex) {
+    public BuyPage(int Imovie, int InumberOfTicket, int InumberOfCTicket, String Idate, int Iage, int[] Iindex) {
         JFrame window = new JFrame();
         window.setContentPane(panelBuy);
         window.setTitle("BUY");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        numberOfTicket = InumberOfTicket;
+        numberOfChildrenTicket = InumberOfCTicket;
         System.arraycopy(Iindex, 0, index, 0, Iindex.length);
         Update();
         CheckBox(Imovie);
-        TextFieldTicket.setText(String.valueOf(InumberOfTicket));
-        TextFieldChildren.setText(String.valueOf(Iage));
         window.setVisible(true);
         button1.addActionListener(e -> {
             new WelcomePage();
@@ -332,33 +300,22 @@ public class BuyPage extends JFrame {
         });
 
         buttonErase.addActionListener(e -> {
-            radioButton1.setSelected(false);
-            radioButton2.setSelected(false);
-            radioButton3.setSelected(false);
-            radioButton4.setSelected(false);
-            radioButton5.setSelected(false);
-
-            radioButton1.setEnabled(true);
-            radioButton2.setEnabled(true);
-            radioButton3.setEnabled(true);
-            radioButton4.setEnabled(true);
-            radioButton5.setEnabled(true);
-
-            JLabelError.setText("");
-            TextFieldChildren.setText("");
-            TextFieldTicket.setText("");
+        Erase();
         });
 
 
         ButtonNext.addActionListener(e -> {
-            boolean NULL = (TextFieldTicket.getText().isEmpty() || TextFieldChildren.getText().isEmpty());
+            int ticket = comboBoxATicket.getSelectedIndex();
+            int ticketC = comboBoxCTicket.getSelectedIndex();
+
+            boolean NULL = ticket == 0;
             if (ChoiceMovie() != -1 && !NULL) {
                 index[0] = comboBoxYears.getSelectedIndex();
                 index[1] = comboBoxMonths.getSelectedIndex();
                 index[2] = comboBoxDay.getSelectedIndex();
-                numberOfTicket = Integer.parseInt(TextFieldTicket.getText());
+                numberOfTicket = ticket;
                 date = comboBoxYears.getSelectedItem().toString() + "-" + comboBoxMonths.getSelectedItem().toString() + "-" + comboBoxDay.getSelectedItem().toString();
-                numberOfChildrenTicket = Integer.parseInt(TextFieldChildren.getText());
+                numberOfChildrenTicket = ticketC;
                 window.dispose();
                 new SelectDate(ChoiceMovie(), numberOfTicket, date, numberOfChildrenTicket, index);
             } else JLabelError.setText("Please fill all information");
@@ -379,6 +336,9 @@ public class BuyPage extends JFrame {
         comboBoxYears.setSelectedIndex(index[0]);
         comboBoxMonths.setSelectedIndex(index[1]);
         comboBoxDay.setSelectedIndex(index[2]);
+
+        comboBoxATicket.setSelectedIndex(numberOfTicket);
+        comboBoxCTicket.setSelectedIndex(numberOfChildrenTicket);
 
     }
 
@@ -425,5 +385,24 @@ public class BuyPage extends JFrame {
             radioButton4.setEnabled(false);
         }
 
+    }
+
+    private void Erase(){
+        radioButton1.setSelected(false);
+        radioButton2.setSelected(false);
+        radioButton3.setSelected(false);
+        radioButton4.setSelected(false);
+        radioButton5.setSelected(false);
+
+        radioButton1.setEnabled(true);
+        radioButton2.setEnabled(true);
+        radioButton3.setEnabled(true);
+        radioButton4.setEnabled(true);
+        radioButton5.setEnabled(true);
+
+        JLabelError.setText("");
+
+        comboBoxATicket.setSelectedIndex(0);
+        comboBoxCTicket.setSelectedIndex(0);
     }
 }

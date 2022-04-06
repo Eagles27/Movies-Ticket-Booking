@@ -115,16 +115,6 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="9bf0" class="javax.swing.JTextField" binding="TextFieldTicket">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value=""/>
-            </properties>
-          </component>
           <component id="1385f" class="javax.swing.JLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -356,16 +346,6 @@
               <text value="Number of children under 13 :"/>
             </properties>
           </component>
-          <component id="188f5" class="javax.swing.JTextField" binding="TextFieldChildren">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value=""/>
-            </properties>
-          </component>
           <component id="f9c75" class="javax.swing.JLabel" binding="JLabelError">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -373,6 +353,46 @@
             <properties>
               <foreground color="-4259584"/>
               <text value=""/>
+            </properties>
+          </component>
+          <component id="dd0e2" class="javax.swing.JComboBox" binding="comboBoxATicket">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <model>
+                <item value="0"/>
+                <item value="1"/>
+                <item value="2"/>
+                <item value="3"/>
+                <item value="4"/>
+                <item value="5"/>
+                <item value="6"/>
+                <item value="7"/>
+                <item value="8"/>
+                <item value="9"/>
+                <item value="10"/>
+              </model>
+            </properties>
+          </component>
+          <component id="ad97a" class="javax.swing.JComboBox" binding="comboBoxCTicket">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <model>
+                <item value="0"/>
+                <item value="1"/>
+                <item value="2"/>
+                <item value="3"/>
+                <item value="4"/>
+                <item value="5"/>
+                <item value="6"/>
+                <item value="7"/>
+                <item value="8"/>
+                <item value="9"/>
+                <item value="10"/>
+              </model>
             </properties>
           </component>
         </children>
