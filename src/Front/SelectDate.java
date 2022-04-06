@@ -25,6 +25,7 @@ public class SelectDate extends JFrame {
     private JLabel JLabelDate;
     private JLabel JLabelPrice;
     private JButton eraseButton;
+    private JLabel JLabelNumberCTicket;
 
     private ArrayList<String> listSession = new ArrayList<>();
     private int numberOfChildrenTicket;
@@ -35,6 +36,7 @@ public class SelectDate extends JFrame {
         JFrame window = new JFrame();
         this.numberOfChildrenTicket = numberOfChildrenTicket;
         this.numberOfTicket = numberOfTicket;
+        this.numberOfChildrenTicket = numberOfChildrenTicket;
         window.setContentPane(SelectDataPane);
         window.setTitle("SelectDate");
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -45,6 +47,7 @@ public class SelectDate extends JFrame {
         ListMovies movies = new ListMovies();
         JLabelTitle.setText(movies.getMovieName(movie));
         JLabelNumberTicket.setText(String.valueOf(numberOfTicket));
+        JLabelNumberCTicket.setText(String.valueOf(numberOfChildrenTicket));
         JLabelDate.setText("Available film sessions on " + date + " :");
 
         //Session
@@ -136,12 +139,13 @@ public class SelectDate extends JFrame {
 
         ClientInfo user = new ClientInfo(id);
         JLabelMember.setText(user.getMember());
-        JLabelName.setText(user.getName() + user.getSurname());
+        JLabelName.setText(user.getName() +" "+user.getSurname());
 
         //Backup Movie
         ListMovies movies = new ListMovies();
         JLabelTitle.setText(movies.getMovieName(movie));
         JLabelNumberTicket.setText(String.valueOf(numberOfTicket));
+        JLabelNumberCTicket.setText(String.valueOf(numberOfChildrenTicket));
         JLabelDate.setText("Available film sessions on " + date + " :");
 
         //Session
