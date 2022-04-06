@@ -1,5 +1,6 @@
 package Front;
 
+import Back.ClientInfo;
 import Back.login;
 
 import javax.swing.*;
@@ -38,24 +39,31 @@ public class NewCustomerPage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String date = comboBoxYears.getSelectedItem().toString() + "-" + comboBoxMonths.getSelectedItem().toString() + "-" + comboBoxDay.getSelectedItem().toString();
                 boolean NULL = (JTextFieldName.getText().isEmpty() || JTextFieldFirstName.getText().isEmpty() || JtextFieldMail.getText().isEmpty() || JTextFieldPassword.getText().isEmpty());
-                if (Arrays.equals(JTextFieldPassword.getPassword(), JTextFieldConfirm.getPassword()) && !NULL && acceptTheCGURadioButton.isSelected()) {
+
+                ClientInfo user = new ClientInfo(); user.setMail(JtextFieldMail.getText());
+                boolean Registered = user.AlreadyRegistered();
+
+                if (NULL) {
+                    reset();
+                    JLabelWrongPassword.setText("Please fill all the fields");
+                } else if (Registered) {
+                    reset();
+                    JLabelCGUConfirm.setText("Mail already registered");
+                } else if (!Arrays.equals(JTextFieldPassword.getPassword(), JTextFieldConfirm.getPassword())) {
+                    reset();
+                    JLabelWrongPassword.setText("Wrong password, try again.");
+
+                } else if (!acceptTheCGURadioButton.isSelected()) {
+                    reset();
+                    JLabelCGUConfirm.setText("Please accept the CGU");
+
+                } else {
                     Back.login client = new login(JTextFieldName.getText(), JTextFieldFirstName.getText(), date, JtextFieldMail.getText(), JTextFieldPassword.getText());
                     client.signUp();
                     new BuyPage(JtextFieldMail.getText());
                     window.dispose();
-
-
-                } else if (!Arrays.equals(JTextFieldPassword.getPassword(), JTextFieldConfirm.getPassword())) {
-                    JLabelCGUConfirm.setText("");
-                    JLabelWrongPassword.setText("Wrong password, try again.");
-
-                } else if (!acceptTheCGURadioButton.isSelected()) {
-                    JLabelWrongPassword.setText("");
-                    JLabelCGUConfirm.setText("Please accept the CGU");
-                } else {
-                    JLabelCGUConfirm.setText("");
-                    JLabelWrongPassword.setText("Please fill all the fields");
                 }
+
 
             }
         });
@@ -66,5 +74,11 @@ public class NewCustomerPage extends JFrame {
                 window.dispose();
             }
         });
+    }
+
+
+    private void reset() {
+        JLabelCGUConfirm.setText(" ");
+        JLabelWrongPassword.setText(" ");
     }
 }

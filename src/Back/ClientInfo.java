@@ -22,6 +22,7 @@ public class ClientInfo {
         admin = bdd.select("SELECT admin FROM client WHERE idclient ='" + clientID + "'");
         member = bdd.select("SELECT member FROM client WHERE idclient ='" + clientID + "'");
         password = bdd.select("SELECT password FROM client WHERE idclient ='" + clientID + "'");
+        mail = mailInput;
 
     }
 
@@ -36,6 +37,9 @@ public class ClientInfo {
         member = bdd.select("SELECT member FROM client WHERE idclient ='" + clientID + "'");
         password = bdd.select("SELECT password FROM client WHERE idclient ='" + clientID + "'");
 
+    }
+
+    public ClientInfo() {
     }
 
     public int getClientID() {
@@ -70,11 +74,20 @@ public class ClientInfo {
         return mail;
     }
 
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
     public boolean isAdmin() {
         return Boolean.parseBoolean(admin);
     }
 
     public boolean isMember() {
         return Boolean.parseBoolean(member);
+    }
+
+    public boolean AlreadyRegistered() {
+        mySQL bdd = new mySQL();
+        return bdd.Exist("SELECT * from client where email = '" + mail + "'");
     }
 }

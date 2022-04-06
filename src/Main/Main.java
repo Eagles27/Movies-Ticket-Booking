@@ -10,12 +10,15 @@ public class Main {
     public static void main(String[] args) {
 
         boolean validation;
+        mySQL bdd = new mySQL();
+
+        validation = bdd.Exist("SELECT * from client where email = 'x'");
+
+        System.out.println(validation);
 
         new WelcomePage();
 
-//        mySQL bdd =new mySQL();
-//
-//        System.out.println(bdd.select("SELECT session.date FROM session JOIN movie ON session.idmovie = movie.idmovie WHERE movie.name='Django unchained'"));
+
 
     }
 }
