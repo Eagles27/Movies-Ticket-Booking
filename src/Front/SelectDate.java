@@ -27,14 +27,13 @@ public class SelectDate extends JFrame {
     private JButton eraseButton;
     private JLabel JLabelNumberCTicket;
 
-    private ArrayList<String> listSession = new ArrayList<>();
+    private ArrayList<String> listSession;
     private int numberOfChildrenTicket;
     private int numberOfTicket;
 
 
     public SelectDate(int movie, int numberOfTicket, String date, int numberOfChildrenTicket, int[] index) {
         JFrame window = new JFrame();
-        this.numberOfChildrenTicket = numberOfChildrenTicket;
         this.numberOfTicket = numberOfTicket;
         this.numberOfChildrenTicket = numberOfChildrenTicket;
         window.setContentPane(SelectDataPane);
@@ -52,7 +51,7 @@ public class SelectDate extends JFrame {
 
         //Session
         mySQL bdd = new mySQL();
-        listSession = bdd.multipleSelect("SELECT session.startingTime FROM session JOIN movie ON session.idmovie = movie.idmovie WHERE movie.name='"+movies.getMovieName(movie)+"'");
+        listSession = bdd.multipleSelect("SELECT session.startingTime FROM session JOIN movie ON session.idmovie = movie.idmovie WHERE movie.name='" + movies.getMovieName(movie) + "'");
         JRsession1.setText(listSession.get(0));
         JRsession2.setText(listSession.get(1));
         JRsession3.setText(listSession.get(2));
@@ -61,8 +60,7 @@ public class SelectDate extends JFrame {
 
         NoSession();
 
-        JLabelPrice.setText("£"+String.valueOf(priceCalcul()));
-
+        JLabelPrice.setText("£" + String.valueOf(priceCalcul()));
 
 
         button1.addActionListener(new ActionListener() {
@@ -139,7 +137,7 @@ public class SelectDate extends JFrame {
 
         ClientInfo user = new ClientInfo(id);
         JLabelMember.setText(user.getMember());
-        JLabelName.setText(user.getName() +" "+user.getSurname());
+        JLabelName.setText(user.getSurname() + " " + user.getName());
 
         //Backup Movie
         ListMovies movies = new ListMovies();
@@ -150,7 +148,7 @@ public class SelectDate extends JFrame {
 
         //Session
         mySQL bdd = new mySQL();
-        listSession = bdd.multipleSelect("SELECT session.startingTime FROM session JOIN movie ON session.idmovie = movie.idmovie WHERE movie.name='"+movies.getMovieName(movie)+"'");
+        listSession = bdd.multipleSelect("SELECT session.startingTime FROM session JOIN movie ON session.idmovie = movie.idmovie WHERE movie.name='" + movies.getMovieName(movie) + "'");
         JRsession1.setText(listSession.get(0));
         JRsession2.setText(listSession.get(1));
         JRsession3.setText(listSession.get(2));
@@ -160,15 +158,14 @@ public class SelectDate extends JFrame {
         NoSession();
 
         //Price
-        JLabelPrice.setText("£"+String.valueOf(priceCalcul(-1)));
-
+        JLabelPrice.setText("£" + String.valueOf(priceCalcul(-1)));
 
 
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 window.dispose();
-                new BuyPage(user.getMail(), movie, numberOfTicket, numberOfChildrenTicket, date,index);
+                new BuyPage(user.getMail(), movie, numberOfTicket, numberOfChildrenTicket, date, index);
 
             }
         });
@@ -229,14 +226,15 @@ public class SelectDate extends JFrame {
 
 
     //Function button
-    private void NoSession(){
-        if(JRsession1.getText().equals("No more dates available")) JRsession1.setEnabled(false);
-        if(JRsession2.getText().equals("No more dates available")) JRsession2.setEnabled(false);
-        if(JRsession3.getText().equals("No more dates available")) JRsession3.setEnabled(false);
-        if(JRsession4.getText().equals("No more dates available")) JRsession4.setEnabled(false);
-        if(JRsession5.getText().equals("No more dates available")) JRsession5.setEnabled(false);
+    private void NoSession() {
+        if (JRsession1.getText().equals("No more dates available")) JRsession1.setEnabled(false);
+        if (JRsession2.getText().equals("No more dates available")) JRsession2.setEnabled(false);
+        if (JRsession3.getText().equals("No more dates available")) JRsession3.setEnabled(false);
+        if (JRsession4.getText().equals("No more dates available")) JRsession4.setEnabled(false);
+        if (JRsession5.getText().equals("No more dates available")) JRsession5.setEnabled(false);
     }
-    private void Reset(){
+
+    private void Reset() {
         JRsession1.setSelected(false);
         JRsession2.setSelected(false);
         JRsession3.setSelected(false);
@@ -253,13 +251,13 @@ public class SelectDate extends JFrame {
     }
 
     //Functions prices
-    private double priceCalcul(){
+    private double priceCalcul() {
         return 7.50 * numberOfChildrenTicket + 11.50 * numberOfTicket;
     }
-    private double priceCalcul(int id){
+
+    private double priceCalcul(int id) {
         return 5.00 * numberOfChildrenTicket + 9.50 * numberOfTicket;
     }
-
 
 
 }
