@@ -26,8 +26,14 @@ public class SelectDate extends JFrame {
     private JLabel JLabelPrice;
     private JButton eraseButton;
     private JLabel JLabelNumberCTicket;
+    private JLabel JLabelPlace1;
+    private JLabel JLabelPlace2;
+    private JLabel JLabelPlace3;
+    private JLabel JLabelPlace5;
+    private JLabel JLabelPlace4;
 
     private ArrayList<String> listSession;
+    private ArrayList<String> lisSessionP;
     private int numberOfChildrenTicket;
     private int numberOfTicket;
 
@@ -42,21 +48,7 @@ public class SelectDate extends JFrame {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setVisible(true);
 
-        //Backup Movie
-        ListMovies movies = new ListMovies();
-        JLabelTitle.setText(movies.getMovieName(movie));
-        JLabelNumberTicket.setText(String.valueOf(numberOfTicket));
-        JLabelNumberCTicket.setText(String.valueOf(numberOfChildrenTicket));
-        JLabelDate.setText("Available film sessions on " + date + " :");
-
-        //Session
-        mySQL bdd = new mySQL();
-        listSession = bdd.multipleSelect("SELECT session.startingTime FROM session JOIN movie ON session.idmovie = movie.idmovie WHERE movie.name='" + movies.getMovieName(movie) + "'");
-        JRsession1.setText(listSession.get(0));
-        JRsession2.setText(listSession.get(1));
-        JRsession3.setText(listSession.get(2));
-        JRsession4.setText(listSession.get(3));
-        JRsession5.setText(listSession.get(4));
+        Update(movie, date);
 
         NoSession();
 
@@ -135,25 +127,12 @@ public class SelectDate extends JFrame {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setVisible(true);
 
+        //Client Info
         ClientInfo user = new ClientInfo(id);
         JLabelMember.setText(user.getMember());
         JLabelName.setText(user.getSurname() + " " + user.getName());
 
-        //Backup Movie
-        ListMovies movies = new ListMovies();
-        JLabelTitle.setText(movies.getMovieName(movie));
-        JLabelNumberTicket.setText(String.valueOf(numberOfTicket));
-        JLabelNumberCTicket.setText(String.valueOf(numberOfChildrenTicket));
-        JLabelDate.setText("Available film sessions on " + date + " :");
-
-        //Session
-        mySQL bdd = new mySQL();
-        listSession = bdd.multipleSelect("SELECT session.startingTime FROM session JOIN movie ON session.idmovie = movie.idmovie WHERE movie.name='" + movies.getMovieName(movie) + "'");
-        JRsession1.setText(listSession.get(0));
-        JRsession2.setText(listSession.get(1));
-        JRsession3.setText(listSession.get(2));
-        JRsession4.setText(listSession.get(3));
-        JRsession5.setText(listSession.get(4));
+        Update(movie, date);
 
         NoSession();
 
@@ -225,7 +204,32 @@ public class SelectDate extends JFrame {
     }
 
 
-    //Function button
+    //Functions displays
+    private void Update(int movie, String date) {
+        //Backup Movie
+        ListMovies movies = new ListMovies();
+        JLabelTitle.setText(movies.getMovieName(movie));
+        JLabelNumberTicket.setText(String.valueOf(numberOfTicket));
+        JLabelNumberCTicket.setText(String.valueOf(numberOfChildrenTicket));
+        JLabelDate.setText("Available film sessions on " + date + " :");
+
+        //Session
+        mySQL bdd = new mySQL();
+        listSession = bdd.multipleSelect("SELECT session.startingTime FROM session JOIN movie ON session.idmovie = movie.idmovie WHERE movie.name='" + movies.getMovieName(movie) + "'");
+        lisSessionP = bdd.multipleSelect("SELECT session.placeAmount FROM session JOIN movie ON session.idmovie = movie.idmovie WHERE movie.name='" + movies.getMovieName(movie) + "'");
+        JRsession1.setText(listSession.get(0));
+        JRsession2.setText(listSession.get(1));
+        JRsession3.setText(listSession.get(2));
+        JRsession4.setText(listSession.get(3));
+        JRsession5.setText(listSession.get(4));
+
+        JLabelPlace1.setText("Number of seats left: " + lisSessionP.get(0));
+        JLabelPlace2.setText("Number of seats left: " + lisSessionP.get(1));
+        JLabelPlace3.setText("Number of seats left: " + lisSessionP.get(2));
+        JLabelPlace4.setText("Number of seats left: " + lisSessionP.get(3));
+        JLabelPlace5.setText("Number of seats left: " + lisSessionP.get(4));
+    }
+
     private void NoSession() {
         if (JRsession1.getText().equals("No more dates available")) JRsession1.setEnabled(false);
         if (JRsession2.getText().equals("No more dates available")) JRsession2.setEnabled(false);

@@ -251,6 +251,46 @@
               <text value="Nbr of tickets"/>
             </properties>
           </component>
+          <component id="ded32" class="javax.swing.JLabel" binding="JLabelPlace1">
+            <constraints>
+              <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="6ec8f" class="javax.swing.JLabel" binding="JLabelPlace2">
+            <constraints>
+              <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="ef0c1" class="javax.swing.JLabel" binding="JLabelPlace3">
+            <constraints>
+              <grid row="10" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="1a51e" class="javax.swing.JLabel" binding="JLabelPlace5">
+            <constraints>
+              <grid row="12" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="19005" class="javax.swing.JLabel" binding="JLabelPlace4">
+            <constraints>
+              <grid row="11" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
         </children>
       </grid>
       <vspacer id="fe595">
