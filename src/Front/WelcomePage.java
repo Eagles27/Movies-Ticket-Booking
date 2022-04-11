@@ -69,7 +69,8 @@ public class WelcomePage extends JFrame {
                 boolean ISadmin = root.isAdmin() && ((Hashing.doHashing(passwordField.getText())).equals(root.getPassword()));
 
                 if (ISadmin) {
-                    System.out.println("Admin");
+                    new AdminFirst();
+                    frame.dispose();
                 } else if (user.signIn()) {
                     new BuyPage(mailField.getText());
                     frame.dispose();
