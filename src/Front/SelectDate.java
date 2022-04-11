@@ -31,6 +31,7 @@ public class SelectDate extends JFrame {
     private JLabel JLabelPlace3;
     private JLabel JLabelPlace5;
     private JLabel JLabelPlace4;
+    private JLabel JLabelMessage;
 
     private ArrayList<String> listSession;
     private ArrayList<String> lisSessionP;
@@ -118,9 +119,13 @@ public class SelectDate extends JFrame {
         proceedToPaymentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                window.dispose();
-                ListMovies movies = new ListMovies();
-                new BasketCompletion(movies.getMovieName(movie),date,ChoiceSession(),numberOfTicket,numberOfChildrenTicket,priceCalcul());
+                if (Confirmation()) {
+                    window.dispose();
+                    ListMovies movies = new ListMovies();
+                    new BasketCompletion(movies.getMovieName(movie), date, ChoiceSession(), numberOfTicket, numberOfChildrenTicket, priceCalcul(), movie, index);
+                }
+
+                else JLabelMessage.setText("Please select a session");
             }
         });
     }
@@ -213,9 +218,12 @@ public class SelectDate extends JFrame {
         proceedToPaymentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                window.dispose();
-                ListMovies movies = new ListMovies();
-                new BasketCompletion(movies.getMovieName(movie),date,ChoiceSession(),numberOfTicket,numberOfChildrenTicket,priceCalcul());
+                if (Confirmation()) {
+                    window.dispose();
+                    ListMovies movies = new ListMovies();
+                    new BasketCompletion(movies.getMovieName(movie), date, ChoiceSession(), numberOfTicket, numberOfChildrenTicket, priceCalcul(id), movie, index, id);
+                } else JLabelMessage.setText("Please select a session");
+
             }
         });
     }
@@ -247,12 +255,16 @@ public class SelectDate extends JFrame {
         JLabelPlace5.setText("Number of seats left: " + lisSessionP.get(4));
     }
 
-    private String ChoiceSession(){
+    private String ChoiceSession() {
         if (JRsession1.isSelected()) return JRsession1.getText();
-        if (JRsession2.isSelected()) return JRsession2.getText();;
-        if (JRsession3.isSelected()) return JRsession3.getText();;
-        if (JRsession4.isSelected()) return JRsession4.getText();;
-        if (JRsession5.isSelected()) return JRsession5.getText();;
+        if (JRsession2.isSelected()) return JRsession2.getText();
+        ;
+        if (JRsession3.isSelected()) return JRsession3.getText();
+        ;
+        if (JRsession4.isSelected()) return JRsession4.getText();
+        ;
+        if (JRsession5.isSelected()) return JRsession5.getText();
+        ;
         return "";
     }
 
@@ -277,7 +289,17 @@ public class SelectDate extends JFrame {
         JRsession4.setEnabled(true);
         JRsession5.setEnabled(true);
 
+        JLabelMessage.setText("");
+
         NoSession();
+    }
+
+    private boolean Confirmation() {
+        if (JRsession1.isSelected()) return true;
+        else if (JRsession2.isSelected()) return true;
+        else if (JRsession3.isSelected()) return true;
+        else if (JRsession4.isSelected()) return true;
+        else return JRsession5.isSelected();
     }
 
     //Functions prices

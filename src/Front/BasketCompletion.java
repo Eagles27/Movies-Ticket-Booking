@@ -17,7 +17,7 @@ public class BasketCompletion extends JFrame {
     private JLabel JLabelPrice;
 
 
-    public BasketCompletion(String Title, String Date, String Seance, int NumberTicketA, int NumberTicketC, Double Price) {
+    public BasketCompletion(String Title, String Date, String Seance, int NumberTicketA, int NumberTicketC, Double Price, int movie, int[]index) {
         JFrame window = new JFrame();
         window.setContentPane(panel1);
         window.setTitle("Basket");
@@ -30,6 +30,43 @@ public class BasketCompletion extends JFrame {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new SelectDate(movie,NumberTicketA,Date,NumberTicketC,index);
+                window.dispose();
+
+            }
+        });
+        GOButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                    new PaymentCompleted(window);
+
+            }
+        });
+    }
+
+    public BasketCompletion(String Title, String Date, String Seance, int NumberTicketA, int NumberTicketC, Double Price, int movie, int[]index, int id) {
+        JFrame window = new JFrame();
+        window.setContentPane(panel1);
+        window.setTitle("Basket");
+        window.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setVisible(true);
+
+        Update(Title, Date, Seance, NumberTicketA, NumberTicketC, Price);
+
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SelectDate(movie,NumberTicketA,Date,NumberTicketC,index,id);
+                window.dispose();
+
+            }
+        });
+
+        GOButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new PaymentCompleted(window);
 
             }
         });
