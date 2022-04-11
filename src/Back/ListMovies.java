@@ -9,6 +9,7 @@ public class ListMovies {
     private ArrayList<String> listMoviesGenre;
     private ArrayList<String> listMoviesDuration;
     private ArrayList<String> listMoviesReleased;
+    private  ArrayList<String> listMoviesImages;
 
 
     public ListMovies(){
@@ -17,6 +18,7 @@ public class ListMovies {
         listMoviesGenre = bdd.multipleSelect("SELECT genre FROM movie");
         listMoviesDuration = bdd.multipleSelect("SELECT duration FROM movie");
         listMoviesReleased = bdd.multipleSelect("SELECT released FROM movie");
+        listMoviesImages = bdd.multipleSelect("SELECT images FROM movie");
     }
 
     public ArrayList<String> getListMoviesDuration() {
@@ -33,6 +35,10 @@ public class ListMovies {
 
     public ArrayList<String> getListMoviesReleased() {
         return listMoviesReleased;
+    }
+
+    public ArrayList<String> getListMoviesImages() {
+        return listMoviesImages;
     }
 
     public String getMovieName(int index){
