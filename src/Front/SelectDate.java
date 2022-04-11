@@ -35,6 +35,8 @@ public class SelectDate extends JFrame {
 
     private ArrayList<String> listSession;
     private ArrayList<String> lisSessionP;
+    private String IDSession;
+
     private int numberOfChildrenTicket;
     private int numberOfTicket;
 
@@ -242,6 +244,8 @@ public class SelectDate extends JFrame {
         mySQL bdd = new mySQL();
         listSession = bdd.multipleSelect("SELECT session.startingTime FROM session JOIN movie ON session.idmovie = movie.idmovie WHERE movie.name='" + movies.getMovieName(movie) + "'");
         lisSessionP = bdd.multipleSelect("SELECT session.placeAmount FROM session JOIN movie ON session.idmovie = movie.idmovie WHERE movie.name='" + movies.getMovieName(movie) + "'");
+        IDSession = bdd.select("SELECT session.idseance FROM session JOIN movie ON session.idmovie = movie.idmovie WHERE movie.name='" + movies.getMovieName(movie) + "'");
+
         JRsession1.setText(listSession.get(0));
         JRsession2.setText(listSession.get(1));
         JRsession3.setText(listSession.get(2));
