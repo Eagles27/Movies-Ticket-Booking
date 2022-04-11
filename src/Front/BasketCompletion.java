@@ -15,6 +15,7 @@ public class BasketCompletion extends JFrame {
     private JLabel JLabelTicketA;
     private JLabel JLabelTicketC;
     private JLabel JLabelPrice;
+    private JLabel JLabelMessage;
 
 
     public BasketCompletion(String Title, String Date, String Seance, int NumberTicketA, int NumberTicketC, Double Price, int movie, int[]index) {
@@ -38,7 +39,12 @@ public class BasketCompletion extends JFrame {
         GOButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                if (!(textField1.getText().isEmpty() || textField2.getText().isEmpty())){
                     new PaymentCompleted(window);
+                }
+
+                else JLabelMessage.setText("Please fill all information");
 
             }
         });
@@ -66,7 +72,12 @@ public class BasketCompletion extends JFrame {
         GOButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new PaymentCompleted(window);
+
+                if (!(textField1.getText().isEmpty() || textField2.getText().isEmpty())){
+                    new PaymentCompleted(window);
+                }
+
+                else JLabelMessage.setText("Please fill all information");
 
             }
         });
