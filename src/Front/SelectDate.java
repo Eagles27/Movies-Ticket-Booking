@@ -115,6 +115,14 @@ public class SelectDate extends JFrame {
                 Reset();
             }
         });
+        proceedToPaymentButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                window.dispose();
+                ListMovies movies = new ListMovies();
+                new BasketCompletion(movies.getMovieName(movie),date,ChoiceSession(),numberOfTicket,numberOfChildrenTicket,priceCalcul());
+            }
+        });
     }
 
     public SelectDate(int movie, int numberOfTicket, String date, int numberOfChildrenTicket, int[] index, int id) {
@@ -201,6 +209,15 @@ public class SelectDate extends JFrame {
                 Reset();
             }
         });
+
+        proceedToPaymentButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                window.dispose();
+                ListMovies movies = new ListMovies();
+                new BasketCompletion(movies.getMovieName(movie),date,ChoiceSession(),numberOfTicket,numberOfChildrenTicket,priceCalcul());
+            }
+        });
     }
 
 
@@ -228,6 +245,15 @@ public class SelectDate extends JFrame {
         JLabelPlace3.setText("Number of seats left: " + lisSessionP.get(2));
         JLabelPlace4.setText("Number of seats left: " + lisSessionP.get(3));
         JLabelPlace5.setText("Number of seats left: " + lisSessionP.get(4));
+    }
+
+    private String ChoiceSession(){
+        if (JRsession1.isSelected()) return JRsession1.getText();
+        if (JRsession2.isSelected()) return JRsession2.getText();;
+        if (JRsession3.isSelected()) return JRsession3.getText();;
+        if (JRsession4.isSelected()) return JRsession4.getText();;
+        if (JRsession5.isSelected()) return JRsession5.getText();;
+        return "";
     }
 
     private void NoSession() {
