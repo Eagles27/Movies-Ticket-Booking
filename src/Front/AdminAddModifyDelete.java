@@ -3,6 +3,7 @@ package Front;
 import bdd.mySQL;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,6 +27,8 @@ public class AdminAddModifyDelete extends JFrame {
     private JComboBox comboBoxDay;
     private JTextField JLabelGenre;
     private JTextField JLabelDuration;
+    private JTable table1;
+    private JScrollPane scrollPane1;
 
     private String Title;
     private String Genre;
@@ -40,6 +43,8 @@ public class AdminAddModifyDelete extends JFrame {
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setVisible(true);
+
+        createTable(); //Permit to fill the array
 
         a6Button.addActionListener(new ActionListener() {
             @Override
@@ -68,4 +73,20 @@ public class AdminAddModifyDelete extends JFrame {
             }
         });
     }
+
+    private void createTable() {
+        mySQL bdd = new mySQL();
+        Object[][] donnees = {
+                bdd.multipleSelect("SELECT * FROM movie").toArray(),
+        };
+        String[] columTitle = {
+                "Title", "Genre", "Duration(min)", "Released", "FrontPage?"
+        };
+
+        table1.setModel(new DefaultTableModel(
+                donnees,
+                columTitle
+        ));
+    }
+
 }

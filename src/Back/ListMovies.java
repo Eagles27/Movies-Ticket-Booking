@@ -9,10 +9,10 @@ public class ListMovies {
     private ArrayList<String> listMoviesGenre;
     private ArrayList<String> listMoviesDuration;
     private ArrayList<String> listMoviesReleased;
-    private  ArrayList<String> listMoviesImages;
+    private ArrayList<String> listMoviesImages;
 
 
-    public ListMovies(){
+    public ListMovies() {
         bdd.mySQL bdd = new mySQL();
         listMoviesName = bdd.multipleSelect("SELECT name FROM movie");
         listMoviesGenre = bdd.multipleSelect("SELECT genre FROM movie");
@@ -20,6 +20,16 @@ public class ListMovies {
         listMoviesReleased = bdd.multipleSelect("SELECT released FROM movie");
         listMoviesImages = bdd.multipleSelect("SELECT images FROM movie");
     }
+
+    public ListMovies(boolean foreground) {
+        bdd.mySQL bdd = new mySQL();
+        listMoviesName = bdd.multipleSelect("SELECT name FROM movie WHERE presentation = 'true'");
+        listMoviesGenre = bdd.multipleSelect("SELECT genre FROM movie WHERE presentation = 'true'");
+        listMoviesDuration = bdd.multipleSelect("SELECT duration FROM movie WHERE presentation = 'true'");
+        listMoviesReleased = bdd.multipleSelect("SELECT released FROM movie WHERE presentation = 'true'");
+        listMoviesImages = bdd.multipleSelect("SELECT images FROM movie WHERE presentation = 'true'");
+    }
+
 
     public ArrayList<String> getListMoviesDuration() {
         return listMoviesDuration;
@@ -41,7 +51,7 @@ public class ListMovies {
         return listMoviesImages;
     }
 
-    public String getMovieName(int index){
+    public String getMovieName(int index) {
         return listMoviesName.get(index);
     }
 }

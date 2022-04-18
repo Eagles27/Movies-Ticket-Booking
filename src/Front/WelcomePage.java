@@ -80,7 +80,7 @@ public class WelcomePage extends JFrame {
     }
 
     private void update() {
-        ListMovies list = new ListMovies();
+        ListMovies list = new ListMovies(true); //Permit to use the second constructor
 
         TitleF1.setText(list.getListMoviesName().get(0));
         JLabelGenre1.setText(list.getListMoviesGenre().get(0));
